@@ -19,8 +19,8 @@ class Search:
         for message in SMSmsgs:
             if message['address'] == user_requested_address:
                 print("{}: {}".format(message['address'], message['body']))
-            else:
-                print("Not found")
+        else:
+            print("Not found")
 
     @staticmethod
     def view_by_string():
@@ -30,8 +30,8 @@ class Search:
             if user_requested_string in message['body']:
                 print("{}: {}".format(message['address'], message['body']))
 
-            else:
-                print("Not found")
+        else:
+            print("Not found")
 
 
 class Requests:
