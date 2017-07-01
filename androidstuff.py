@@ -1,7 +1,7 @@
 """DOCSTRING."""
-# import android
-# import androidhelper
-# import socket
+import android
+import androidhelper
+import socket
 
 
 class Search:
@@ -49,18 +49,18 @@ class Requests:
             print("""1. By Number\n2. By String\n""")
             search_decision = int(input("Enter Selection: "))
             if search_decision == 1:
-                pass
+                Search.view_by_address()
 
             elif search_decision == 2:
-                pass
+                Search.view_by_string()
 
 
 def start():
     """DOCSTRING."""
     Requests.decision()
 
-# droid = android.Android()
-# SMSmsgs = droid.smsGetMessages(False, 'inbox').result
+droid = android.Android()
+SMSmsgs = droid.smsGetMessages(False, 'inbox').result
 
 
 start()
