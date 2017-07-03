@@ -4,10 +4,8 @@ import socket
 
 def receive():
     """DOCSTRING"""
-    user_host = input("Enter Host: ")
-    host = user_host
-    user_port = input("Enter Port #: ")
-    port = user_port
+    host = input("Enter Host: ")
+    port = input("Enter Port #: ")
 
     mySocket = socket.socket()
     mySocket.bind((host, port))
