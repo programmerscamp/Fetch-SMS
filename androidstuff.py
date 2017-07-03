@@ -1,7 +1,28 @@
 """DOCSTRING."""
+import sys
+import socket
 import android
 import androidhelper
-import socket
+
+
+class Connection():
+
+    def Transfer(smsdata):
+        """DOCSTRING."""
+        host = input("Host IP: ")
+        port = input("Port: ")
+
+        mySocket = socket.socket()
+        mySocket.connect((host, port))
+
+        message = smsdata
+
+        mySocket.send(message.encode())
+        data = mySocket.recv(1024).decode()
+
+        print('Received from server: ' + data)
+
+        mySocket.close()
 
 
 class Search:
@@ -10,7 +31,8 @@ class Search:
     def view_all():
         """DOCSTRING."""
         for message in SMSmsgs:
-            print("{}: {}".format(message['address'], message['body']))
+            smsdata = "{}: {}".format(message['address'], message['body'])
+            Connection.Transfer(smsdata)
 
     @staticmethod
     def view_by_address():
@@ -18,7 +40,8 @@ class Search:
         user_requested_address = input("Enter Number: ")
         for message in SMSmsgs:
             if message['address'] == user_requested_address:
-                print("{}: {}".format(message['address'], message['body']))
+                smsdata = "{}: {}".format(message['address'], message['body'])
+                Connection.Transfer(smsdata)
         else:
             print("Not found")
 
@@ -28,7 +51,8 @@ class Search:
         user_requested_string = input("Enter Search String: ")
         for message in SMSmsgs:
             if user_requested_string in message['body']:
-                print("{}: {}".format(message['address'], message['body']))
+                smsdata = "{}: {}".format(message['address'], message['body'])
+                Connection.Transfer(smsdata)
 
         else:
             print("Not found")
@@ -58,6 +82,7 @@ class Requests:
 def start():
     """DOCSTRING."""
     Requests.decision()
+
 
 droid = android.Android()
 SMSmsgs = droid.smsGetMessages(False, 'inbox').result
